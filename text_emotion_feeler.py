@@ -1,15 +1,14 @@
 import requests
 
-# Ollama server URL
-OLLAMA_URL = "http://localhost:11434/api/generate"
-
+# Ollama server URL "
+OLLAMA_API_URL = 'http://localhost:11434/api/generate'
 def detect_category(user_text: str) -> str:
     """
     Detects the category of the given text using LLaMA 3.2 via Ollama.
     Returns only the category string.
     """
     prompt = f"""
-You are an advanced action intent detector for a Data Scientist / ML Engineer / AI Engineer.
+You are an advanced action intent detector .
 Whenever any text comes to you, you must tell me which category it belongs to from the list below.
 Return only the category name — no extra words, no punctuation, no explanations.
 
@@ -17,9 +16,8 @@ Categories:
 - open youtube
 - open facebook
 - open clock
-- open important professional website
 - file opener
-- file management
+- file management      
 - write code
 - find file
 - search information
@@ -78,7 +76,7 @@ Categories:
 - open git bash
 - open onedrive
 - open dropbox
-- open jupyter notebook
+- open jupyter no..tebook
 - open jupyter lab
 - open anaconda navigator
 - open spyder ide
@@ -108,7 +106,6 @@ Categories:
 - open kibana
 - open grafana
 - open neo4j browser
-- open faiss dashboard (if available)
 - open vsphere
 - open putty
 - open winSCP
@@ -123,7 +120,7 @@ Text: {user_text}
         "stream": False
     }
 
-    response = requests.post(OLLAMA_URL, json=payload)
+    response = requests.post(OLLAMA_API_URL, json=payload)
 
     if response.status_code == 200:
         result = response.json()
@@ -133,6 +130,6 @@ Text: {user_text}
 
 # Example usage
 if __name__ == "__main__":
-    text_input = "i think i need some things like hugging face "
+    text_input = "open google"
     category = detect_category(text_input)
     print("Detected category:", category)
